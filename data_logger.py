@@ -120,7 +120,7 @@ def main(file_name, starting_value):
 
                     
         keys = key_check()
-        if 'J' in keys:
+        if 'K' in keys:
             if paused:
                 paused = False
                 print('unpaused!')
