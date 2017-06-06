@@ -43,6 +43,7 @@ def main(file_name, starting_value):
     while(True):
         
         if not paused:
+            time.sleep(1/35)
             screen = grab_screen(region=(roip1,roip2,roip3,roip4))
             last_time = time.time()
             # resize to something a bit more acceptable for a CNN
