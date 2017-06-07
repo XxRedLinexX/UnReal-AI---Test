@@ -3,7 +3,8 @@ from grabscreen import grab_screen
 import ctypes
 import cv2
 import time
-from User_Input import key_check, mouse_click
+from User_Input import mouse_click
+from keyboard import listen
 import os
 from ctypes import windll, Structure, c_ulong, byref
 import win32api
@@ -46,21 +47,21 @@ def keys_to_output(keys):
     '''
     output = [0,0,0,0,0,0,0,0,0]
 
-    if 'W' in keys and 'A' in keys:
+    if 'w' in keys and 'a' in keys:
         output = wa
-    elif 'W' in keys and 'D' in keys:
+    elif 'w' in keys and 'd' in keys:
         output = wd
-    elif 'S' in keys and 'A' in keys:
+    elif 's' in keys and 'a' in keys:
         output = sa
-    elif 'S' in keys and 'D' in keys:
+    elif 's' in keys and 'd' in keys:
         output = sd
-    elif 'W' in keys:
+    elif 'w' in keys:
         output = w
-    elif 'S' in keys:
+    elif 's' in keys:
         output = s
-    elif 'A' in keys:
+    elif 'a' in keys:
         output = a
-    elif 'D' in keys:
+    elif 'd  ' in keys:
         output = d
     else:
         output = nk
@@ -95,7 +96,7 @@ def main(file_name, starting_value):
             # run a color convert:
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
             
-            keys = key_check()
+            keys = listen()
             clicks = mouse_click()
             output = keys_to_output(keys)
             pos = MousePosition()
@@ -119,8 +120,8 @@ def main(file_name, starting_value):
                     file_name = 'training_data-{}.npy'.format(starting_value)
 
                     
-        keys = key_check()
-        if 'K' in keys:
+        keys = listen()
+        if 'k' in keys:
             if paused:
                 paused = False
                 print('unpaused!')
